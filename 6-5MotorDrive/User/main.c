@@ -1,28 +1,35 @@
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
 #include "OLED.h"
-#include "PWM.h"
+#include "Motor.h"
+#include "Key.h"
 
-uint8_t i;
+uint8_t KeyNum;   //接收键值
+int8_t Speed;     //速度
 
 int main(void)
 {
    
 	OLED_Init();  //初始化OLED	
-	PWM_Init();  //初始化PWM
+	Motor_Init();  //初始化电机
+	KEY_Init();
+	
+	
+	OLED_ShowString(1,1,"Speed:");
 	
 	while(1)  
 	{
-		for(i=0;i<100;i++)
+		KeyNum = Key_GetNum();
+		if(KeyNum == 1)
 		{
-			PWM_SetCompare1(i);
-			Delay_ms(10);
+			Speed+=20;
+			if(Speed>100)
+			{
+				Speed = -100;
+			}
 		}
-		for(i=0;i<100;i++)
-		{
-			PWM_SetCompare1(100-i);
-			Delay_ms(10);
-		}
+		Motor_SetSpeed(Speed);
+		OLED_ShowSignedNum(1,7,Speed,3);
 	}
 }
 
