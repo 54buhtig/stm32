@@ -29,3 +29,4 @@
 .\objects\w25q64.o: .\Library\stm32f10x_wwdg.h
 .\objects\w25q64.o: .\Library\misc.h
 .\objects\w25q64.o: Hardware\MySPI.h
+.\objects\w25q64.o: Hardware\W25Q64_Ins.h

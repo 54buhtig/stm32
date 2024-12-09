@@ -151,7 +151,7 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\Hardware\MySPI.h)(0x67556A0D)()
-F (.\Hardware\W25Q64.c)(0x67556E43)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\System -I .\User -I .\Hardware-I.\RTE\_Target_1-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\w25q64.o --omf_browse .\objects\w25q64.crf --depend .\objects\w25q64.d)
+F (.\Hardware\W25Q64.c)(0x67566D54)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\System -I .\User -I .\Hardware-I.\RTE\_Target_1-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\w25q64.o --omf_browse .\objects\w25q64.crf --depend .\objects\w25q64.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)
 I (D:\ProgramFiles\DevKits\Keil5_MDK\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -181,7 +181,9 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 I (Hardware\MySPI.h)(0x67556A0D)
-F (.\Hardware\W25Q64.h)(0x67556E3F)()
+I (Hardware\W25Q64_Ins.h)(0x6755A429)
+F (.\Hardware\W25Q64.h)(0x67566DAA)()
+F (.\Hardware\W25Q64_Ins.h)(0x6755A429)()
 F (.\Start\startup_stm32f10x_md.s)(0x4D783CD2)(--cpu Cortex-M3 -g --apcs=interwork -I.\RTE\_Target_1-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 524" --pd "STM32F10X_MD SETA 1"--list .\listings\startup_stm32f10x_md.lst --xref -o .\objects\startup_stm32f10x_md.o --depend .\objects\startup_stm32f10x_md.d)
 F (.\Start\core_cm3.c)(0x4C0C587E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\System -I .\User -I .\Hardware-I.\RTE\_Target_1-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\core_cm3.o --omf_browse .\objects\core_cm3.crf --depend .\objects\core_cm3.d)
 I (D:\ProgramFiles\DevKits\Keil5_MDK\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -961,7 +963,7 @@ I (.\Library\stm32f10x_usart.h)(0x4D783BB4)
 I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 F (.\System\Delay.h)(0x6130920E)()
-F (.\User\main.c)(0x67556ED5)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\System -I .\User -I .\Hardware-I.\RTE\_Target_1-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\User\main.c)(0x67567304)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\System -I .\User -I .\Hardware-I.\RTE\_Target_1-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\Start\stm32f10x.h)(0x4D783CB4)
 I (.\Start\core_cm3.h)(0x4D523B58)
 I (D:\ProgramFiles\DevKits\Keil5_MDK\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -992,7 +994,7 @@ I (.\Library\stm32f10x_wwdg.h)(0x4D783BB4)
 I (.\Library\misc.h)(0x4D783BB4)
 I (.\System\Delay.h)(0x6130920E)
 I (.\Hardware\OLED.h)(0x63087D20)
-I (.\Hardware\W25Q64.h)(0x67556E3F)
+I (.\Hardware\W25Q64.h)(0x67566DAA)
 F (.\User\stm32f10x_conf.h)(0x4D99A59E)()
 F (.\User\stm32f10x_it.c)(0x4D99A59E)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\System -I .\User -I .\Hardware-I.\RTE\_Target_1-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\ProgramFiles\DevKits\Keil5_MDK\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f10x_it.o --omf_browse .\objects\stm32f10x_it.crf --depend .\objects\stm32f10x_it.d)
 I (User\stm32f10x_it.h)(0x4D99A59E)
