@@ -16,7 +16,7 @@ int main(void)
 	OLED_ShowSignedNum(2,8,-77,2);        //第2行显示符号数
 	OLED_ShowHexNum(3,1,0xABCD,4);        //第3行显示16进制
 	OLED_ShowBinNum(4,1,0xABCD,16);       //第4行显示二进制
-	 OLED_Clear();          //清屏函数
+//	 OLED_Clear();          //清屏函数
 	while(1)  
 	{
 		
