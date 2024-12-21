@@ -48,14 +48,14 @@ int main(void)
 	{
 		
 		
-		Key_GetNum();
+//		Key_GetNum();
 		
 		
 		
 //		OLED_ShowString(4,1,"FEED");
 //		Delay_ms(20);
 //		OLED_ShowString(4,1,"    ");
-		Delay_ms(49);
+		Delay_ms(47);
 	
 		WWDG_SetCounter(0x40 |54);
 
