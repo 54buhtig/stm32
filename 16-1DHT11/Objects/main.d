@@ -31,3 +31,5 @@
 .\objects\main.o: .\System\Delay.h
 .\objects\main.o: .\Hardware\OLED.h
 .\objects\main.o: .\Hardware\dht11.h
+.\objects\main.o: .\Hardware\Serial.h
+.\objects\main.o: D:\ProgramFiles\DevKits\Keil5_MDK\ARM\ARMCC\Bin\..\include\stdio.h

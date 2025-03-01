@@ -1,6 +1,8 @@
 #include "stm32f10x.h"
 #include "OLED_Font.h"
 
+
+
 /*引脚配置*/
 #define OLED_W_SCL(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_8, (BitAction)(x))
 #define OLED_W_SDA(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_9, (BitAction)(x))
@@ -262,6 +264,36 @@ void OLED_ShowBinNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Leng
 		OLED_ShowChar(Line, Column + i, Number / OLED_Pow(2, Length - i - 1) % 2 + '0');
 	}
 }
+
+/**
+   * @brief  OLED显示中文
+   * @param  Line：显示中文出现的行
+			 Column：显示中文出现的列
+		     Num：中文库编号
+   * @retval
+   */
+void OLED_ShowCN(uint8_t Line, uint8_t Column, uint8_t Num)  
+{      	
+	uint8_t i;
+	uint8_t wide=20;//字宽
+	
+	OLED_SetCursor((Line-1)*2, (Column-1)*wide);		//参数1:把光标设置在第几页. 参数2:把光标设置在第几列
+	for (i = 0; i < wide; i++)
+	{
+		OLED_WriteData(OLED_F10x16[Num][i]);			//显示上半部分内容
+	}
+	
+	OLED_SetCursor((Line-1)*2+1,(Column-1)*wide);		
+	for (i = 0; i < wide; i++)
+	{
+		OLED_WriteData(OLED_F10x16[Num][i+wide]);		//显示下半部分内容
+	}
+ 
+}
+
+
+
+
 
 /**
   * @brief  OLED初始化
