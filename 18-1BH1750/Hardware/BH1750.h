@@ -1,6 +1,6 @@
 	#ifndef __BH1750_H
 	#define __BH1750_H	 
-	#include "sys.h"
+//	#include "sys.h"
 	 
 	//BH1750µÄµØÖ·
 	#define BH1750_Addr			0x46

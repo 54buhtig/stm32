@@ -1,26 +1,25 @@
-//	#include "sys.h"	
-	#include "delay.h"	
-	#include "led.h" 
-	#include "key.h"
-	#include "OLED.h"
-	#include "bmp.h"
-	#include "dht11.h"
-	#include "bh1750.h"
+#include "Delay.h"
+#include "led.h" 
+#include "key.h"
+#include "OLED.h"
+#include "bmp.h"
+#include "dht11.h"
+#include "bh1750.h"
 	
-	u8 temperature =0;  	    
-	u8 humidity = 0; 
+//	u8 temperature =0;  	    
+//	u8 humidity = 0; 
 	float Light = 0; //光照度
 	
 	 int main(void)
 	 {
 		u8 t =0;
-		delay_init();	    	 //延时函数初始化	  
-		LED_Init();		  	 	//初始化与LED连接的硬件接口
-		KEY_Init();            //初始化与按键连接的硬件接口
+//		delay_init();	    	 //延时函数初始化	  
+//		LED_Init();		  	 	//初始化与LED连接的硬件接口
+//		KEY_Init();            //初始化与按键连接的硬件接口
 		OLED_Init();           //初始化与OLED显示屏
 		OLED_Clear();           //清楚屏幕
 		 
-		DHT11_Init();          //初始化DHT11
+//		DHT11_Init();          //初始化DHT11
 		BH1750_Init();          //初始化BH1750
 		  
 		while(1)
@@ -67,6 +66,8 @@
 				LED1=1;
 			
 			}
+
+			
 			
 		}
 		
