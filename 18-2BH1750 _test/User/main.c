@@ -9,7 +9,7 @@
 	
 	u8 temperature =0;  	    
 	u8 humidity = 0; 
-	uint32_t Light = 0; //光照度
+	float Light = 0; //光照度
 	
 	 int main(void)
 	 {
@@ -31,7 +31,7 @@
 //				DHT11_Read_Data(&temperature,&humidity);	//读取温湿度值	
 				if (!i2c_CheckDevice(BH1750_Addr))
 				{
-					Light = (uint32_t)LIght_Intensity();              //获取光照强度
+					Light = LIght_Intensity();              //获取光照强度
 				}		
 	 	   
 			}	
@@ -52,11 +52,11 @@
 			//OLED显示文字 "光照强度"
 			OLED_ShowCN(1,1,11);//光
 			OLED_ShowCN(1,2,12);//照
-//			OLED_ShowCN(1,3,12);//强
+////			OLED_ShowCN(1,3,12);//强
 			OLED_ShowCN(1,3,7);//度
 //			OLED_ShowCN(60,1,":",36);//:
 //			OLED_ShowNum(75,0,Light,2,16);//显示ASCII字符的码值
-			OLED_ShowSignedNum(2,0,Light,2);
+			OLED_ShowFNum(2,0,Light);
 			
 //			if(Light<50)//光照强度小于50，LED1灯亮
 //			{

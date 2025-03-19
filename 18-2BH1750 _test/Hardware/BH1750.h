@@ -74,7 +74,7 @@
 	uint8_t i2c_CheckDevice(uint8_t _Address);
 	
 	void BH1750_Init(void);			//未包含IIC初始化
-	uint8_t LIght_Intensity(void);	//读取光照强度的值
+	float LIght_Intensity(void);	//读取光照强度的值
 	uint8_t BH1750_Byte_Write(uint8_t data);
 	uint16_t BH1750_Read_Measure(void);
 	void BH1750_Power_ON(void);

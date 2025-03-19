@@ -309,8 +309,8 @@ void BH1750_Init(void)
 }
 
 //获取光照强度
-uint8_t LIght_Intensity(void)
+float LIght_Intensity(void)
 {
-	return (BH1750_Read_Measure()/1.1f*Resolurtion);
+	return (float)(BH1750_Read_Measure()/1.1f*Resolurtion);
 }
 

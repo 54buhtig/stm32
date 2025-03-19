@@ -1,9 +1,13 @@
 #include "stm32f10x.h"
 #include "OLED_Font.h"
-
+#include "stdio.h"
 /*引脚配置*/
 #define OLED_W_SCL(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_8, (BitAction)(x))
 #define OLED_W_SDA(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_9, (BitAction)(x))
+
+
+
+
 
 /*引脚初始化*/
 void OLED_I2C_Init(void)
@@ -290,6 +294,30 @@ void OLED_ShowCN(uint8_t Line, uint8_t Column, uint8_t Num)
 	}
  
 }
+
+
+/******************有缺陷，不会自动处理位数变化*******************
+ * void OLED_ShowFNum()  显示任意浮点数，参考中景园OLED_ShowNum()函数
+ * x , y :  起点坐标	 
+ * Fnum  :  要显示的浮点数
+ * size1 :  字体大小	 		
+ * mode  :  0,反色显示;1,正常显示
+ ***************************************************************/
+void OLED_ShowFNum(u8 x,u8 y,float Fnum)
+{
+//	unsigned int i,flen;
+	char Data[sizeof(Fnum)+1];                //数据位数由sizeof(Fnum) 来判断，灵活创建数组大小 
+    sprintf(Data,"%.3f",Fnum);                       //保留小数点后3位小数，打印到Data数组中
+//	flen = sizeof(Data)+1;							 //判断浮点数长度，方便后期打印输出 
+//	  printf("转后：%c",*Data);                       //测试用
+//	for(i=0;i<flen;i++){							 //根据转后字符长度打印输出
+////		  x+=8;																		        //每个字符占8位，向后占位
+////		  OLED_ShowChar(x,y,Data[i]);     //调用oled字符显示函数，在OLED屏上逐个显示          
+//		
+//		}
+	OLED_ShowString(2,1,Data);
+}
+
 
 
 /**
