@@ -5,7 +5,7 @@
 	#include "OLED.h"
 //	#include "bmp.h"
 //	#include "dht11.h"
-	#include "bh1750.h"
+	#include "BH1750.h"
 	
 	u8 temperature =0;  	    
 	u8 humidity = 0; 
@@ -50,14 +50,23 @@
 //			OLED_ShowNum(50,6,humidity,2,16);//显示ASCII字符的码值
 			 
 			//OLED显示文字 "光照强度"
-			OLED_ShowCN(1,1,11);//光
-			OLED_ShowCN(1,2,12);//照
-////			OLED_ShowCN(1,3,12);//强
-			OLED_ShowCN(1,3,7);//度
-//			OLED_ShowCN(60,1,":",36);//:
-//			OLED_ShowNum(75,0,Light,2,16);//显示ASCII字符的码值
-			OLED_ShowFNum(2,0,Light);
-			
+			OLED_ShowCN(1,1,0);//温
+			OLED_ShowCN(1,2,5);//度
+			OLED_ShowChar(1,5,':');
+			OLED_ShowCN(2,1,1);//湿
+			OLED_ShowCN(2,2,5);//度
+			OLED_ShowChar(2,5,':');
+			OLED_ShowCN(3,1,2);//光
+			OLED_ShowCN(3,2,3);//照
+			OLED_ShowCN(3,3,4);//强
+			OLED_ShowCN(3,4,5);//度
+			OLED_ShowChar(3,9,':');
+			OLED_ShowFNum(3,10,Light);
+			OLED_ShowCN(4,1,6);//空
+			OLED_ShowCN(4,2,7);//气
+			OLED_ShowCN(4,3,8);//质
+			OLED_ShowCN(4,4,9);//量
+			OLED_ShowChar(4,9,':');
 //			if(Light<50)//光照强度小于50，LED1灯亮
 //			{
 //				LED1 = 0;

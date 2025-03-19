@@ -4,7 +4,7 @@
 .\objects\main.o: .\Hardware\led.h
 .\objects\main.o: .\Hardware\key.h
 .\objects\main.o: .\Hardware\OLED.h
-.\objects\main.o: .\Hardware\bh1750.h
+.\objects\main.o: .\Hardware\BH1750.h
 .\objects\main.o: .\Start\stm32f10x.h
 .\objects\main.o: .\Start\core_cm3.h
 .\objects\main.o: .\Start\system_stm32f10x.h
