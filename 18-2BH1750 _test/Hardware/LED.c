@@ -59,7 +59,7 @@ void LED1_Turn(void)
 		GPIO_ResetBits(GPIOA,GPIO_Pin_1); //打开LED
 	}
 }
-
+ 
 
 /**
    * @brief 打开LED2

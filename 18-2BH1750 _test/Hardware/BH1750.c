@@ -1,4 +1,4 @@
-#include "BH1750.h"
+	#include "BH1750.h"
 //#include "sys.h"
 /*
 	应用说明：
@@ -278,7 +278,7 @@ uint16_t BH1750_Read_Measure(void)
 	return receive_data;	//返回读取到的数据
 }
 
-
+ 
 //BH1750s上电
 void BH1750_Power_ON(void)
 {
@@ -309,8 +309,8 @@ void BH1750_Init(void)
 }
 
 //获取光照强度
-float LIght_Intensity(void)
+uint8_t LIght_Intensity(void)
 {
-	return (float)(BH1750_Read_Measure()/1.1f*Resolurtion);
+	return (BH1750_Read_Measure()/1.1f*Resolurtion);
 }
 

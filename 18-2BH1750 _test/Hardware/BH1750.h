@@ -1,6 +1,10 @@
 	#ifndef __BH1750_H
 	#define __BH1750_H	 
-	#include "sys.h"
+	#include "stm32f10x.h" 
+	#include "stdint.h"
+//	#include "sys.h"
+
+	 
 	 
 	//BH1750的地址
 	#define BH1750_Addr			0x46
@@ -27,7 +31,7 @@
 	#elif ((Measure_Mode==CONTINUE_L_MODE)|(Measure_Mode==ONE_TIME_L_MODE))
 		#define Resolurtion		4
 	#endif
-	
+	 
 	#define BH1750_I2C_WR	0		/* 写控制bit */
 	#define BH1750_I2C_RD	1		/* 读控制bit */
 	
@@ -70,7 +74,7 @@
 	uint8_t i2c_CheckDevice(uint8_t _Address);
 	
 	void BH1750_Init(void);			//未包含IIC初始化
-	float LIght_Intensity(void);	//读取光照强度的值
+	uint8_t LIght_Intensity(void);	//读取光照强度的值
 	uint8_t BH1750_Byte_Write(uint8_t data);
 	uint16_t BH1750_Read_Measure(void);
 	void BH1750_Power_ON(void);
