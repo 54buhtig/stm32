@@ -1,7 +1,7 @@
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
 #include "OLED.h"
-
+#include "LED.h"
 
 
 int main(void)
@@ -18,7 +18,7 @@ int main(void)
 	OLED_ShowHexNum(3,1,*((__IO uint32_t*)(0x1FFFF7E8+0x04)),8);
 	OLED_ShowHexNum(4,1,*((__IO uint32_t*)(0x1FFFF7E8+0x08)),8);
 	
-	
+	LED_Init();
 	while(1)  
 	{
 		
