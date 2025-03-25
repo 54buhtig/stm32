@@ -3,7 +3,6 @@
  
 #include "stm32f10x.h"
 //#include "common.h"
-#include "Serial.h"
 #include <stdio.h>
 #include <stdbool.h>
  
@@ -108,8 +107,8 @@ extern struct  STRUCT_USARTx_Fram                                  //´®¿ÚÊý¾ÝÖ¡µ
  
  
 /*********************************************** ESP8266 º¯Êýºê¶¨Òå *******************************************/
-#define     macESP8266_Usart( fmt, ... )           printf ( fmt, ##__VA_ARGS__ )
-//#define     macPC_Usart( fmt, ... )                printf ( fmt, ##__VA_ARGS__ )
+#define     macESP8266_Usart( fmt, ... )           USART_printf ( macESP8266_USARTx, fmt, ##__VA_ARGS__ ) 
+#define     macPC_Usart( fmt, ... )                printf ( fmt, ##__VA_ARGS__ )
 //#define     macPC_Usart( fmt, ... )                
  
 #define     macESP8266_CH_ENABLE()                 GPIO_SetBits ( macESP8266_CH_PD_PORT, macESP8266_CH_PD_PIN )
@@ -141,8 +140,8 @@ char *                   ESP8266_ReceiveString               ( FunctionalState e
  
  
 /********************************** ÓÃ»§ÐèÒªÉèÖÃµÄ²ÎÊý**********************************/
-#define      macUser_ESP8266_ApSsid                       "TP-LINK_D9EB"                //ÒªÁ¬½ÓµÄÈÈµãµÄÃû³Æ
-#define      macUser_ESP8266_ApPwd                        "ljp548554"           //ÒªÁ¬½ÓµÄÈÈµãµÄÃÜÔ¿
+#define      macUser_ESP8266_ApSsid                       "www"                //ÒªÁ¬½ÓµÄÈÈµãµÄÃû³Æ
+#define      macUser_ESP8266_ApPwd                        "www123456"           //ÒªÁ¬½ÓµÄÈÈµãµÄÃÜÔ¿
  
 //#define      macUser_ESP8266_TcpServer_IP                 "192.168.0.11"      //ÒªÁ¬½ÓµÄ·þÎñÆ÷µÄ IP
 //#define      macUser_ESP8266_TcpServer_Port               "8080"               //ÒªÁ¬½ÓµÄ·þÎñÆ÷µÄ¶Ë¿Ú

@@ -1,35 +1,35 @@
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
+#include "LED.h"
 #include "OLED.h"
 #include "Serial.h"
+#include "ESP8266.h"
 
-uint8_t RxData;
-
+ 
+uint8_t flag;
+ 
 int main(void)
-{
-   
-	OLED_Init();  //初始化OLED
-
-	OLED_ShowString(1,1,"RxData:");
-	Serial_Init(); //初始化串口
+{ 
 	
-
-	while(1)  
+	SystemInit();//配置系统时钟为72M	
+	LED_Init();
+	LED1_On();
+	Serial_Init();
+	
+	ESP8266_Init ();   //初始化WiFi模块使用的接口和外设（使用串口2）
+	ESP8266_StaTcpClient ();//WiFi模块设置
+	
+	printf("Start \n");
+	Delay_ms(1000);
+	
+ 
+	while (1)
 	{
-		//采用查询的方法接收数据
-//		if(USART_GetFlagStatus(USART1,USART_FLAG_RXNE)==SET)
-//		{
-//			RxData = USART_ReceiveData(USART1);
-//			OLED_ShowChar(1,1,RxData);
-//		}
-		
-		//采用中断的方法接收数据
-		if(Serial_GetRxFlag()==1)
+		switch(flag)
 		{
-			RxData  =  Serial_GetRxData();
-			Serial_SendByte(RxData);
-			OLED_ShowHexNum(1,8,RxData,2);
-		}
+			case 'a': LED1_On();break;//开灯
+			
+			case 'c': LED2_Off();break;//关灯
+		}	
 	}
 }
-

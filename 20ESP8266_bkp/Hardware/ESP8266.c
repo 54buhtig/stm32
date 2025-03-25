@@ -213,7 +213,7 @@ bool ESP8266_Cmd ( char * cmd, char * reply1, char * reply2, u32 waittime )
 {    
 	strEsp8266_Fram_Record .InfBit .FramLength = 0;               //从新开始接收新的数据包
  
-	macESP8266_Usart("%s\r\n", cmd);   //发送命令到esp8266
+	macESP8266_Usart( "%s\r\n", cmd );
  
 	if ( ( reply1 == 0 ) && ( reply2 == 0 ) )                      //不需要接收数据
 		return true;
@@ -222,7 +222,7 @@ bool ESP8266_Cmd ( char * cmd, char * reply1, char * reply2, u32 waittime )
 	
 	strEsp8266_Fram_Record .Data_RX_BUF [ strEsp8266_Fram_Record .InfBit .FramLength ]  = '\0';
  
-	Serial_Printf( "%s", strEsp8266_Fram_Record .Data_RX_BUF );
+	macPC_Usart ( "%s", strEsp8266_Fram_Record .Data_RX_BUF );
   
 	if ( ( reply1 != 0 ) && ( reply2 != 0 ) )
 		return ( ( bool ) strstr ( strEsp8266_Fram_Record .Data_RX_BUF, reply1 ) || 
@@ -302,6 +302,7 @@ bool ESP8266_JoinAP ( char * pSSID, char * pPassWord )
 	char cCmd [120];
  
 	sprintf ( cCmd, "AT+CWJAP=\"%s\",\"%s\"", pSSID, pPassWord );
+	
 	return ESP8266_Cmd ( cCmd, "OK", NULL, 5000 );
 	
 }
@@ -564,7 +565,7 @@ void ESP8266_ExitUnvarnishSend ( void )
 {
 	Delay_ms( 1000 );
 	
-	Serial_Printf( "+++" ); //通过串口发送命令
+	macESP8266_Usart ( "+++" );
 	
 	Delay_ms( 500 ); 
 	
@@ -590,7 +591,7 @@ bool ESP8266_SendString ( FunctionalState enumEnUnvarnishTx, char * pStr, u32 ul
 		
 	if ( enumEnUnvarnishTx )
 	{
-		Serial_Printf( "%s", pStr );   //通过串口发送命令
+		macESP8266_Usart ( "%s", pStr );
 		
 		bRet = true;
 		
