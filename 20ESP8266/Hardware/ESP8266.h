@@ -2,22 +2,11 @@
 #define	__ESP8266_H
  
 #include "stm32f10x.h"
-//#include "common.h"
 #include "Serial.h"
 #include <stdio.h>
 #include <stdbool.h>
  
-/*****************³½¸çµ¥Æ¬»úÉè¼Æ******************
-											STM32
- * ÏîÄ¿			:	ESP8266Ä£¿éÍ¨ÐÅÊµÑé                     
- * °æ±¾			: V1.0
- * ÈÕÆÚ			: 2024.9.30
- * MCU			:	STM32F103C8T6
- * ½Ó¿Ú			:	´®¿Ú2						
- * BILIBILI	:	³½¸çµ¥Æ¬»úÉè¼Æ
- * CSDN			:	³½¸çµ¥Æ¬»úÉè¼Æ
- * ×÷Õß			:	³½¸ç 
-**********************BEGIN***********************/
+
  
 #if defined ( __CC_ARM   )
 #pragma anon_unions
@@ -108,7 +97,7 @@ extern struct  STRUCT_USARTx_Fram                                  //´®¿ÚÊý¾ÝÖ¡µ
  
  
 /*********************************************** ESP8266 º¯Êýºê¶¨Òå *******************************************/
-#define     macESP8266_Usart( fmt, ... )           printf ( fmt, ##__VA_ARGS__ )
+#define     macESP8266_Usart( fmt, ... )           Serial2_Printf ( fmt, ##__VA_ARGS__ )
 //#define     macPC_Usart( fmt, ... )                printf ( fmt, ##__VA_ARGS__ )
 //#define     macPC_Usart( fmt, ... )                
  

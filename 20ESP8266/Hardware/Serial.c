@@ -13,9 +13,8 @@ uint8_t  Serial_RxFlag;
    */
 void Serial_Init(void)
 {
-	//第1步:开启USART和GPIO的时钟,USART2的
+	//第1步:开启USART和GPIO的时钟
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE);
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2,ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);
 	
 	
@@ -32,20 +31,7 @@ void Serial_Init(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
 	
-	
-	
-	//第2步:初始化GPIO的PA2引脚 USART2的TX引脚
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;  //复用推挽输出
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2  ;   //引脚A2
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOA,&GPIO_InitStructure);
-	
-	
-	//USART2的RX引脚
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;  //上拉输入
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3  ;   //引脚A3
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOA,&GPIO_InitStructure);
+
 	
 	//第3步:初始化USART1
 	USART_InitTypeDef USART_InitStructure;
@@ -57,14 +43,6 @@ void Serial_Init(void)
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b ;
 	USART_Init(USART1,&USART_InitStructure);
 	
-	//初始化USART2
-	USART_InitStructure.USART_BaudRate = 115200;
-	USART_InitStructure.USART_HardwareFlowControl =  USART_HardwareFlowControl_None;
-	USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx  ;  //选择Tx和Rx作为模式
-	USART_InitStructure.USART_Parity = USART_Parity_No  ; 
-	USART_InitStructure.USART_StopBits = USART_StopBits_1 ;
-	USART_InitStructure.USART_WordLength = USART_WordLength_8b ;
-	USART_Init(USART2,&USART_InitStructure);
 	
 	
 	// 采用中断的方法实现串口接收USART1发送的数据
@@ -79,10 +57,6 @@ void Serial_Init(void)
 	
 	//第4步:使能USART1和USART2
 	USART_Cmd(USART1,ENABLE);
-	USART_Cmd(USART2,ENABLE);
-	
-	
-	
 	
 	
 }
@@ -169,7 +143,7 @@ void Serial2_SendString(char* String)
 	uint8_t i;
 	for(i=0;String[i]!= 0;i++)
 	{
-		Serial_SendByte(String[i]);
+		Serial2_SendByte(String[i]);
 	}
 }
 
@@ -241,13 +215,13 @@ void Serial2_SendNumber(uint32_t Number,uint8_t Length )
 
 /**
    * @brief    对print函数进行重定向,以下函数是fputc的原型,fputc是
-			   printf函数的底层,有了这个函数就可以利用printf打印任何数据到串口2(esp8266)
+			   printf函数的底层,有了这个函数就可以利用printf打印任何数据到串口1(CH340)
    * @param
    * @retval
    */
 int fputc(int ch,FILE *f)
 {
-	Serial2_SendByte(ch);
+	Serial_SendByte(ch);
 	return ch;
 }
 
@@ -259,14 +233,14 @@ int fputc(int ch,FILE *f)
    * @param
    * @retval
    */
-void Serial_Printf(char* format,...)
+void Serial2_Printf(char* format,...)
 {
 	char String[100];
 	va_list arg;    //va_list是数据类型
 	va_start(arg,format);   //从format位置开始接收参数表，放在arg里面
 	vsprintf(String,format,arg);  //要用vsprintf函数,因为sprintf函数只能接收常量(直接写的字符和变量)
 	va_end(arg); //释放参数表
-	Serial_SendString(String);  //发送字符串
+	Serial2_SendString(String);  //发送字符串
 }
 
 /**

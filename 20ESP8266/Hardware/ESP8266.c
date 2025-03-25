@@ -1,9 +1,4 @@
-#include "ESP8266.h"	
- 
-
- 
 #include "ESP8266.h"
-//#include "common.h"
 #include "Delay.h"
 #include <stdio.h>  
 #include <string.h>  
@@ -24,7 +19,7 @@ struct  STRUCT_USARTx_Fram strEsp8266_Fram_Record = { 0 };
   * @param  无
   * @retval 无
   */
-void ESP8266_StaTcpClient ( void )
+ void ESP8266_StaTcpClient ( void )
 {
 //	uint8_t ucStatus;
 //	char cStr [ 100 ] = { 0 };
@@ -110,7 +105,7 @@ static void ESP8266_GPIO_Config ( void )
   * @param  无
   * @retval 无
   */
-static void ESP8266_USART_Config ( void )
+ static void ESP8266_USART_Config ( void )
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	USART_InitTypeDef USART_InitStructure;
@@ -132,7 +127,7 @@ static void ESP8266_USART_Config ( void )
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
 	GPIO_Init(macESP8266_USART_RX_PORT, &GPIO_InitStructure);
 	
-	/* USART1 mode config */
+	/* USART2 mode config */
 	USART_InitStructure.USART_BaudRate = macESP8266_USART_BAUD_RATE;
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
 	USART_InitStructure.USART_StopBits = USART_StopBits_1;
@@ -214,7 +209,8 @@ bool ESP8266_Cmd ( char * cmd, char * reply1, char * reply2, u32 waittime )
 	strEsp8266_Fram_Record .InfBit .FramLength = 0;               //从新开始接收新的数据包
  
 	macESP8266_Usart("%s\r\n", cmd);   //发送命令到esp8266
- 
+
+
 	if ( ( reply1 == 0 ) && ( reply2 == 0 ) )                      //不需要接收数据
 		return true;
 	
@@ -222,7 +218,7 @@ bool ESP8266_Cmd ( char * cmd, char * reply1, char * reply2, u32 waittime )
 	
 	strEsp8266_Fram_Record .Data_RX_BUF [ strEsp8266_Fram_Record .InfBit .FramLength ]  = '\0';
  
-	Serial_Printf( "%s", strEsp8266_Fram_Record .Data_RX_BUF );
+	printf( "%s", strEsp8266_Fram_Record .Data_RX_BUF );
   
 	if ( ( reply1 != 0 ) && ( reply2 != 0 ) )
 		return ( ( bool ) strstr ( strEsp8266_Fram_Record .Data_RX_BUF, reply1 ) || 
@@ -564,7 +560,7 @@ void ESP8266_ExitUnvarnishSend ( void )
 {
 	Delay_ms( 1000 );
 	
-	Serial_Printf( "+++" ); //通过串口发送命令
+	printf( "+++" ); //通过串口发送命令
 	
 	Delay_ms( 500 ); 
 	
@@ -590,7 +586,7 @@ bool ESP8266_SendString ( FunctionalState enumEnUnvarnishTx, char * pStr, u32 ul
 		
 	if ( enumEnUnvarnishTx )
 	{
-		Serial_Printf( "%s", pStr );   //通过串口发送命令
+		printf( "%s", pStr );   //通过串口发送命令
 		
 		bRet = true;
 		
@@ -645,3 +641,10 @@ char * ESP8266_ReceiveString ( FunctionalState enumEnUnvarnishTx )
 	return pRecStr;
 	
 }
+
+
+
+
+
+
+
