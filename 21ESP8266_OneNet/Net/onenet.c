@@ -2,13 +2,7 @@
 	**********************************************************************
 	**********************************************************************
 	**********************************************************************
-	*	文件名： 	onenet.c
-	*	作者： 		zh
-	*	日期： 		
-	*	版本： 		V1.1
 	*	说明： 		与onenet平台的数据交互接口层
-	*	修改记录：	
-	*	
 	**********************************************************************
 	**********************************************************************
 	**********************************************************************
@@ -27,17 +21,17 @@
 //硬件驱动
 #include "usart.h"
 #include "delay.h"
-//#include "dht11.h"
+#include "dht11.h"
 
 //C库
 #include <string.h>
 #include <stdio.h>
 
-#define PROID		"F1AVyfXw7I"  //产品ID
+#define PROID		"50ftPIy42a"  //产品ID
 
-#define AUTH_INFO	"version=2018-10-31&res=products%2FF1AVyfXw7I%2Fdevices%2Ftest&et=2810313321&method=md5&sign=EfJtPPxHwMX6iWWf3YksbA%3D%3D"  //鉴权信息
+#define AUTH_INFO	"version=2018-10-31&res=products%2F50ftPIy42a%2Fdevices%2Fdht11&et=1784415600&method=md5&sign=Co%2BJcoFkBaPt4%2FcxgvpREQ%3D%3D"  //鉴权信息
 
-#define DEVID		"test"   //设备名称
+#define DEVID		"dht11"   //设备名称
 
 extern unsigned char esp8266_buf[128];
 
@@ -97,9 +91,9 @@ _Bool OneNet_DevLink(void)
 //访问ONENET需要提交JSON数据，就获取到的温湿度转换为JSON数据形式
 unsigned char MqttOnenet_Savedata(char *t_payload)
 {
-	extern double temperature;
+	extern float temperature;
 	
-	char json[]="{\"id\":\"123\",\"version\":\"1.0\",\"params\":{\"temp\":{\"value\":%lf}}}";  //更换了JSON数据形式，符合OneNET需求
+	char json[]="{\"id\":\"123\",\"version\":\"1.0\",\"params\":{\"Temperature\":{\"value\":%f}}}";  //更换了JSON数据形式，符合OneNET需求
     char t_json[200];
     unsigned short json_len;
 	sprintf(t_json, json, temperature);

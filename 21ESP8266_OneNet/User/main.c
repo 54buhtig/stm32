@@ -1,27 +1,46 @@
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
 #include "OLED.h"
+#include "usart.h" 
+#include "esp8266.h"
+#include "onenet.h"
 
 
+#include <string.h>
+#include <stdio.h>
 
 int main(void)
 {
    
-	OLED_Init();  //初始化OLED
-	OLED_ShowChar(1,1,'C');               //第1行显示字符
-	OLED_ShowString(1,3,"Hello World!"); 	//第1行显示字符串
-//	OLED_ShowChar(1,1,' ');
-	OLED_ShowChar(1,14,' ');
-	OLED_ShowNum(2,1,12345,5);            //第2行显示无符号数
-	OLED_ShowSignedNum(2,8,-77,2);        //第2行显示符号数
-	OLED_ShowHexNum(3,1,0xABCD,4);        //第3行显示16进制
-	OLED_ShowBinNum(4,1,0xABCD,16);       //第4行显示二进制
-//	 OLED_Clear();          //清屏函数
-	while(1)  
-	{
+	unsigned short timeCount = 0;	//发送间隔变量
+	unsigned char *dataPtr = NULL;	
+	 
+	
+	Usart2_Init(115200);     //串口2初始化为115200
+	
+	ESP8266_Init();	 
+ 
+	while(OneNet_DevLink())			//接入OneNET
+	Delay_ms(500);	
+
+	while(1)
+	{	    	    
 		
+		//DHT11_Read_Data(&temperature,&humidity);		//读取温湿度值
+		//delay_ms(100);
 		
-     
+		if(++timeCount >= 50)									//发送间隔5s
+				{		
+//					data_len=MqttOnenet_Savedata(send_jason,temperature, humidity);
+					OneNet_SendData();									//发送数据
+					
+					timeCount = 0;
+					ESP8266_Clear();
+				}				
+			  dataPtr = ESP8266_GetIPD(0);
+			  if(dataPtr != NULL)
+				OneNet_RevPro(dataPtr);
+
 	}
 }
 

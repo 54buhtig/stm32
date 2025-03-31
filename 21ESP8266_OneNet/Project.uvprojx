@@ -435,6 +435,26 @@
               <FileType>5</FileType>
               <FilePath>.\Hardware\Key.h</FilePath>
             </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\usart.h</FilePath>
+            </File>
+            <File>
+              <FileName>dht11.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Hardware\dht11.c</FilePath>
+            </File>
+            <File>
+              <FileName>dht11.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Hardware\dht11.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -720,6 +740,16 @@
               <FileType>5</FileType>
               <FilePath>.\System\Delay.h</FilePath>
             </File>
+            <File>
+              <FileName>sys.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\System\sys.c</FilePath>
+            </File>
+            <File>
+              <FileName>sys.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\System\sys.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -759,11 +789,6 @@
               <FileName>onenet.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Net\onenet.h</FilePath>
-            </File>
-            <File>
-              <FileName>sample.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Net\sample.c</FilePath>
             </File>
           </Files>
         </Group>

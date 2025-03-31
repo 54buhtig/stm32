@@ -418,7 +418,7 @@ uint8 MQTT_UnPacketConnectAck(uint8 *rev_data)
 uint1 MQTT_PacketSaveData(const int8 *devid, int16 send_len, int8 *type_bin_head, uint8 type, MQTT_PACKET_STRUCTURE *mqttPacket)
 {
 
-	if(MQTT_PacketPublish(MQTT_PUBLISH_ID, "$sys/F1AVyfXw7I/test/thing/property/post", NULL, send_len, MQTT_QOS_LEVEL0, 0, 1, mqttPacket) == 0)  //Publish消息
+	if(MQTT_PacketPublish(MQTT_PUBLISH_ID, "$sys/50ftPIy42a/dht11/thing/property/post", NULL, send_len, MQTT_QOS_LEVEL0, 0, 1, mqttPacket) == 0)  //Publish消息
 	{
 
 	}

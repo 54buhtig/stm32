@@ -20,14 +20,14 @@
 #include "esp8266.h"
 
 //硬件驱动
-#include "delay.h"
+#include "Delay.h"
 #include "usart.h"
 
 //C库
 #include <string.h>
 #include <stdio.h>
 
-#define ESP8266_WIFI_INFO		"AT+CWJAP=\"ESP8266\",\"31415926535898\"\r\n"
+#define ESP8266_WIFI_INFO		"AT+CWJAP=\"TP-LINK_D9EB\",\"ljp548554\"\r\n"
 
 //#define ESP8266_ONENET_INFO		"AT+CIPSTART=\"TCP\",\"183.230.40.39\",6002\r\n"    //旧版OneNET地址
 #define ESP8266_ONENET_INFO		"AT+CIPSTART=\"TCP\",\"mqtts.heclouds.com\",1883\r\n"  	//新版OneNET地址
@@ -116,7 +116,7 @@ _Bool ESP8266_SendCmd(char *cmd, char *res)
 				return 0;
 			}
 		}
-		delay_ms(10);
+		Delay_ms(10);
 	}
 	
 	return 1;
@@ -184,7 +184,7 @@ unsigned char *ESP8266_GetIPD(unsigned short timeOut)
 				
 			}
 		}
-		delay_ms(5);													//延时等待
+		Delay_ms(5);													//延时等待
 	} while(timeOut--);
 	
 	return NULL;														//超时还未找到，返回空指针
@@ -216,23 +216,23 @@ void ESP8266_Init(void)
 	GPIO_Init(GPIOA, &GPIO_Initure);
 	
 	GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_RESET);
-	delay_ms(250);
+	Delay_ms(250);
 	GPIO_WriteBit(GPIOA, GPIO_Pin_0, Bit_SET);
-	delay_ms(500);
+	Delay_ms(500);
 	
 	ESP8266_Clear();
 
 	while(ESP8266_SendCmd("AT\r\n", "OK"))
-		delay_ms(500);
+		Delay_ms(500);
 	
 	while(ESP8266_SendCmd("AT+CWMODE=1\r\n", "OK"))
-		delay_ms(500);
+		Delay_ms(500);
 	
 	while(ESP8266_SendCmd(ESP8266_WIFI_INFO, "GOT IP"))
-		delay_ms(500);
+		Delay_ms(500);
 	
 	while(ESP8266_SendCmd(ESP8266_ONENET_INFO, "CONNECT"))
-		delay_ms(500);
+		Delay_ms(500);
 
 }
 
