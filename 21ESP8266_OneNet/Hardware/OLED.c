@@ -264,6 +264,33 @@ void OLED_ShowBinNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Leng
 }
 
 /**
+   * @brief  OLED显示中文
+   * @param  Line：显示中文出现的行(1~4)
+			 Column：显示中文出现的列(1~6)
+		     Num：中文库编号
+   * @retval
+   */
+void OLED_ShowCN(uint8_t Line, uint8_t Column, uint8_t Num)
+{      	
+	uint8_t i;
+	uint8_t wide=16;//字宽为16
+	
+	OLED_SetCursor((Line-1)*2, (Column-1)*wide);		//参数1:把光标设置在第几页. 参数2:把光标设置在第几列
+	for (i = 0; i < wide; i++)
+	{
+		OLED_WriteData(OLED_F16x16[Num][i]);			//显示上半部分内容
+	}
+	
+	OLED_SetCursor((Line-1)*2+1,(Column-1)*wide);		
+	for (i = 0; i < wide; i++)
+	{
+		OLED_WriteData(OLED_F16x16[Num][i+wide]);		//显示下半部分内容
+	}
+ 
+}
+
+
+/**
   * @brief  OLED初始化
   * @param  无
   * @retval 无
