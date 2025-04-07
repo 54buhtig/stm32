@@ -93,14 +93,16 @@ _Bool OneNet_DevLink(void)
 //访问ONENET需要提交JSON数据，就获取到的温湿度转换为JSON数据形式
 unsigned char MqttOnenet_Savedata(char *t_payload)
 {
+	
 	extern float temperature;
 	extern float humidity;
 	extern float lightvalue;
 	extern u16 Airvalue;
-	char json[]="{\"id\":\"123\",\"version\":\"1.0\",\"params\":{\"Temperature\":{\"value\":%f},\"Humidity\":{\"value\":%f}}}";  //更换了JSON数据形式，符合OneNET需求
-    char t_json[200];   //存储json的数组
+	int Airvalue2 = (int)Airvalue;
+	char json[]="{\"id\":\"123\",\"version\":\"1.0\",\"params\":{\"Light\":{\"value\":%f},\"Air\":{\"value\":%d}}}";  //更换了JSON数据形式，符合OneNET需求     \"Temperature\":{\"value\":%f},\"Humidity\":{\"value\":%f},
+    char t_json[300];   //存储json的数组
     unsigned short json_len;
-	sprintf(t_json, json, temperature,humidity);
+	sprintf(t_json, json, lightvalue,Airvalue2);
     json_len = strlen(t_json)/sizeof(char);
   	memcpy(t_payload, t_json, json_len);
 	

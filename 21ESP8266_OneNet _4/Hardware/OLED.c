@@ -303,13 +303,6 @@ void OLED_ShowFNum(u8 x,u8 y,float Fnum)
 //	unsigned int i,flen;
 	char Data[sizeof(Fnum)+1];                //数据位数由sizeof(Fnum) 来判断，灵活创建数组大小 
     sprintf(Data,"%.3f",Fnum);                       //保留小数点后3位小数，打印到Data数组中
-//	flen = sizeof(Data)+1;							 //判断浮点数长度，方便后期打印输出 
-//	  printf("转后：%c",*Data);                       //测试用
-//	for(i=0;i<flen;i++){							 //根据转后字符长度打印输出
-////		  x+=8;																		        //每个字符占8位，向后占位
-////		  OLED_ShowChar(x,y,Data[i]);     //调用oled字符显示函数，在OLED屏上逐个显示          
-//		
-//		}
 	OLED_ShowString(x,y,Data);
 }
 

@@ -25,11 +25,12 @@ int main(void)
 	unsigned short timeCount = 0;	//发送间隔变量
 	unsigned char *dataPtr = NULL;	
 	 
-	
+	SystemInit();//配置系统时钟为72M
 	Usart2_Init(115200);     //串口2初始化为115200
 	ESP8266_Init();
 	OLED_Init();
-	
+	BH1750_Init();          //初始化BH1750
+	MQ135_Init();
 	
 			OLED_ShowCN(1,1,0);//温
 			OLED_ShowCN(1,2,5);//度
@@ -54,20 +55,15 @@ int main(void)
  
 	while(OneNet_DevLink())			//接入OneNET
 	Delay_ms(500);	
-
 	while(1)
-	{	    	    
-		
-		//DHT11_Read_Data(&temperature,&humidity);		//读取温湿度值
-		//delay_ms(100);
-		
-		if(t%10==0)			//每100ms读取一次
 	{
-		l++;
-		k++;
+	if(t%10==0)			//每100ms读取一次
+	{
+			l++;
+			k++;
 		if(k%2==0)
 		{
-			value = MQ135_GetData(); 
+			value = MQ135_GetData();
 		}
 		if(l%10==0)
 		{
@@ -80,7 +76,6 @@ int main(void)
 	}
 	Delay_ms(10);
 	t++;
-	
 	OLED_ShowNum(1,6,rec_data[2],2);
 	OLED_ShowNum(1,9,rec_data[3],1);
 	OLED_ShowNum(2,6,rec_data[0],2);
@@ -88,16 +83,15 @@ int main(void)
 	OLED_ShowFNum(3,10,Light);
 	OLED_ShowNum(4,10,value,4);
 		
-		if(++timeCount >= 50)									//发送间隔5s
-				{		
-					OneNet_SendData();									//发送数据
-					timeCount = 0;
-					ESP8266_Clear();
-				}
-			  dataPtr = ESP8266_GetIPD(0);
-			  if(dataPtr != NULL)
-				OneNet_RevPro(dataPtr);
-
+	if(++timeCount >= 50)									//发送间隔5s
+	{		
+		OneNet_SendData();									//发送数据
+		timeCount = 0;
+		ESP8266_Clear();
+	}
+  dataPtr = ESP8266_GetIPD(0);
+  if(dataPtr != NULL)
+	OneNet_RevPro(dataPtr);
 	}
 }
 
