@@ -99,10 +99,10 @@ unsigned char MqttOnenet_Savedata(char *t_payload)
 	extern float lightvalue;
 	extern u16 Airvalue;
 	int Airvalue2 = (int)Airvalue;
-	char json[]="{\"id\":\"123\",\"version\":\"1.0\",\"params\":{\"Light\":{\"value\":%f},\"Air\":{\"value\":%d}}}";  //更换了JSON数据形式，符合OneNET需求     \"Temperature\":{\"value\":%f},\"Humidity\":{\"value\":%f},
+	char json[]="{\"id\":\"123\",\"version\":\"1.0\",\"params\":{\"Light\":{\"value\":%f},\"Air\":{\"value\":%d},\"Temperature\":{\"value\":%f},\"Humidity\":{\"value\":%f}}}";  //更换了JSON数据形式，符合OneNET需求     \"Temperature\":{\"value\":%f},\"Humidity\":{\"value\":%f},
     char t_json[300];   //存储json的数组
     unsigned short json_len;
-	sprintf(t_json, json, lightvalue,Airvalue2);
+	sprintf(t_json, json, lightvalue,Airvalue2,temperature,humidity);
     json_len = strlen(t_json)/sizeof(char);
   	memcpy(t_payload, t_json, json_len);
 	
@@ -125,7 +125,7 @@ void OneNet_SendData(void)
 	
 	MQTT_PACKET_STRUCTURE mqttPacket = {NULL, 0, 0, 0};		//协议包
 	
-	char buf[128];
+	char buf[256];     //设置mqtt包的缓冲区
 	short body_len = 0, i = 0;
 	memset(buf, 0, sizeof(buf));    //清空buff
 	body_len=MqttOnenet_Savedata(buf);	
