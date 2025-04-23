@@ -93,6 +93,7 @@ void OneNet_RevPro_Cjson(unsigned char *cmd)
 				
 	//			cJSON_Delete(json);//释放位于堆中cJSON结构体内存
 	//			cJSON_Delete(json1);
+				count++;
 			}
 		
 			break;
