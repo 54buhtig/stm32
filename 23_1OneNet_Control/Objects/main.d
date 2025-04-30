@@ -33,7 +33,5 @@
 .\objects\main.o: .\Hardware\LED.h
 .\objects\main.o: .\Hardware\Serial.h
 .\objects\main.o: D:\ProgramFiles\DevKits\Keil5_MDK\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\main.o: .\Net\esp8266.h
-.\objects\main.o: .\Net\onenet.h
 .\objects\main.o: .\Hardware\dht11.h
 .\objects\main.o: D:\ProgramFiles\DevKits\Keil5_MDK\ARM\ARMCC\Bin\..\include\string.h

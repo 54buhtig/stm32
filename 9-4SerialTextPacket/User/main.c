@@ -17,7 +17,7 @@ int main(void)
 	
 	OLED_ShowString(1,1,"TxPacket");
 	OLED_ShowString(3,1,"RxPacket");
-	
+
 
 
 
@@ -52,8 +52,7 @@ int main(void)
 
 		}
 
-		
-		
+
 		//数据包接收速度慢可能会造成数据错位，利用RxFlag
 	}
 }

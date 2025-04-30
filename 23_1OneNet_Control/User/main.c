@@ -2,14 +2,15 @@
 #include "Delay.h"
 #include "OLED.h"
 #include "LED.h"
-#include "Serial.h" 
-#include "esp8266.h"
-#include "onenet.h"
+#include "Serial.h"
 #include "OLED.h"
 #include "dht11.h"
 
 #include <string.h>
 #include <stdio.h>
+
+//#include "esp8266.h"
+//#include "onenet.h"
 
 
 extern unsigned int rec_data[4];
@@ -17,40 +18,41 @@ extern unsigned int rec_data[4];
 int main(void)
 {
    
-	unsigned short timeCount = 0;	//发送间隔变量
-	unsigned char *dataPtr = NULL;	
+//	unsigned short timeCount = 0;	//发送间隔变量
+//	unsigned char *dataPtr = NULL;	
 	 
 	LED_Init();
-	Serial_Init();     //串口1初始化为9600打印数据
-	Usart1_Init(115200);
-	ESP8266_Init();
+//	Serial_Init();     //串口1初始化为9600打印数据
+//	Usart1_Init(115200);
+//	ESP8266_Init();
 	OLED_Init();
 	LED1_On();
 	
-	OLED_ShowCN(1,1,0);//温
-	OLED_ShowCN(1,2,5);//度
-	OLED_ShowChar(1,5,':');
-	OLED_ShowChar(1,8,'.');//小数点
-	OLED_ShowCN(1,6,10);//℃
-	OLED_ShowCN(2,1,1);//湿
-	OLED_ShowCN(2,2,5);//度
-	OLED_ShowChar(2,5,':');
-	OLED_ShowChar(2,8,'.');//小数点
-	OLED_ShowString(2,11,"%RH");//%RH
-	OLED_ShowCN(3,1,2);//光
-	OLED_ShowCN(3,2,3);//照
-	OLED_ShowCN(3,3,4);//强
-	OLED_ShowCN(3,4,5);//度
-	OLED_ShowChar(3,9,':');
-	OLED_ShowCN(4,1,6);//空
-	OLED_ShowCN(4,2,7);//气
-	OLED_ShowCN(4,3,8);//质
-	OLED_ShowCN(4,4,9);//量
-	OLED_ShowChar(4,9,':');
+//	OLED_ShowCN(1,1,0);//温
+//	OLED_ShowCN(1,2,5);//度
+//	OLED_ShowChar(1,5,':');
+//	OLED_ShowChar(1,8,'.');//小数点
+//	OLED_ShowCN(1,6,10);//℃
+//	OLED_ShowCN(2,1,1);//湿
+//	OLED_ShowCN(2,2,5);//度
+//	OLED_ShowChar(2,5,':');
+//	OLED_ShowChar(2,8,'.');//小数点
+//	OLED_ShowString(2,11,"%RH");//%RH
+//	OLED_ShowCN(3,1,2);//光
+//	OLED_ShowCN(3,2,3);//照
+//	OLED_ShowCN(3,3,4);//强
+//	OLED_ShowCN(3,4,5);//度
+//	OLED_ShowChar(3,9,':');
+//	OLED_ShowCN(4,1,6);//空
+//	OLED_ShowCN(4,2,7);//气
+//	OLED_ShowCN(4,3,8);//质
+//	OLED_ShowCN(4,4,9);//量
+//	OLED_ShowChar(4,9,':');
  
-	while(OneNet_DevLink())			//接入OneNET
-	Delay_ms(500);	
-
+//	while(OneNet_DevLink())			//接入OneNET
+	Delay_ms(4500);	
+	printf("你好啊！！\r\n");
+	printf("我是我自己！！\r\n");
 	LED2_On();
 	
 	while(1)
@@ -59,21 +61,21 @@ int main(void)
 		//DHT11_Read_Data(&temperature,&humidity);		//读取温湿度值
 		//delay_ms(100);
 		
-		Delay_s(1);
-		DHT11_REC_Data(); //接收温度和湿度的数据
+//		Delay_s(1);
+//		DHT11_REC_Data(); //接收温度和湿度的数据
+//		
+//	    OLED_ShowNum(1,6,rec_data[2],2);
+//		OLED_ShowNum(1,9,rec_data[3],1);
+//		OLED_ShowNum(2,6,rec_data[0],2);
+//		OLED_ShowNum(2,9,rec_data[1],2);
 		
-	    OLED_ShowNum(1,6,rec_data[2],2);
-		OLED_ShowNum(1,9,rec_data[3],1);
-		OLED_ShowNum(2,6,rec_data[0],2);
-		OLED_ShowNum(2,9,rec_data[1],2);
-		
-		if(++timeCount >= 50)									//发送间隔5s
-				{		
-//					data_len=MqttOnenet_Savedata(send_jason,temperature, humidity);
-					OneNet_SendData();									//发送数据
-					timeCount = 0;
-					ESP8266_Clear();
-				}
+//		if(++timeCount >= 50)									//发送间隔5s
+//				{		
+//////					data_len=MqttOnenet_Savedata(send_jason,temperature, humidity);
+////					OneNet_SendData();									//发送数据
+////					timeCount = 0;
+////					ESP8266_Clear();
+//				}
 	}
 }
 

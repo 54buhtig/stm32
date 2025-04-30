@@ -13,6 +13,8 @@ int main(void)
 	OLED_ShowString(1,1,"RxData:");
 	Serial_Init(); //³õÊ¼»¯´®¿Ú
 	
+	
+
 
 	while(1)  
 	{

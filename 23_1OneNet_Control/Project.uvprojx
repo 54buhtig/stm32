@@ -724,43 +724,6 @@
         </Group>
         <Group>
           <GroupName>Net</GroupName>
-          <Files>
-            <File>
-              <FileName>esp8266.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Net\esp8266.c</FilePath>
-            </File>
-            <File>
-              <FileName>esp8266.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Net\esp8266.h</FilePath>
-            </File>
-            <File>
-              <FileName>MqttKit.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Net\MqttKit.c</FilePath>
-            </File>
-            <File>
-              <FileName>MqttKit.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Net\MqttKit.h</FilePath>
-            </File>
-            <File>
-              <FileName>onenet.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Net\onenet.c</FilePath>
-            </File>
-            <File>
-              <FileName>onenet.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Net\onenet.h</FilePath>
-            </File>
-            <File>
-              <FileName>Common.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Net\Common.h</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>User</GroupName>

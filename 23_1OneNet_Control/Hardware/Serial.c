@@ -3,10 +3,6 @@
 #include <stdarg.h>
 
 
-uint8_t  Serial_RxFlag;
-char  Serial_RxPacket[100];
-
-
 /**
    * @brief    初始化串口
    * @param    无
@@ -26,33 +22,15 @@ void Serial_Init(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA,&GPIO_InitStructure);
 	
-	
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;  //上拉输入
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10  ;   //引脚A10
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOA,&GPIO_InitStructure);
 	//第3步:初始化USART
 	USART_InitTypeDef USART_InitStructure;
 	USART_InitStructure.USART_BaudRate = 9600;
 	USART_InitStructure.USART_HardwareFlowControl =  USART_HardwareFlowControl_None;
-	USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx  ;  //选择Tx和Rx作为模式
+	USART_InitStructure.USART_Mode = USART_Mode_Tx ;  //选择Tx作为模式
 	USART_InitStructure.USART_Parity = USART_Parity_No  ; 
 	USART_InitStructure.USART_StopBits = USART_StopBits_1 ;
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b ;
 	USART_Init(USART1,&USART_InitStructure);
-	
-	
-	
-	
-	// 采用中断的方法实现串口接收数据
-	USART_ITConfig(USART1,USART_IT_RXNE,ENABLE);	//配置串口中断，
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);	//配置NVIC
-	NVIC_InitTypeDef NVIC_InitStructure;//初始化NVIC的
-	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelCmd =  ENABLE;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority =1;
-	NVIC_Init(&NVIC_InitStructure);
 	
 	//第4步:使能USART
 	USART_Cmd(USART1,ENABLE);
@@ -160,59 +138,6 @@ void Serial_Printf(char* format,...)
 	vsprintf(String,format,arg);  //要用vsprintf函数,因为sprintf函数只能接收常量(直接写的字符和变量)
 	va_end(arg); //释放参数表
 	Serial_SendString(String);  //发送字符串
-}
-
-
-
-
-
-
-
-/**
-   * @brief   USART1的中断函数
-   * @param   无
-   * @retval  无
-   */
-void USART1_IRQHandler(void)
-{
-	static uint8_t RxState = 0;   //只会初始化1次
-	static uint8_t pRxPacket = 0;   //只会初始化1次
-
-	if(USART_GetITStatus(USART1,USART_IT_RXNE) == SET)
-	{
-		uint8_t RxData = USART_ReceiveData(USART1);	
-		if(RxState == 0)  //等待包头
-		{
-			if(RxData=='@' && Serial_RxFlag == 0)  //数据还没有
-			{
-				RxState = 1;
-				pRxPacket = 0;
-			} 
-		}
-		else if(RxState == 1) //判断包头并接收数据
-		{
-			
-			if(RxData=='\r')
-			{
-				RxState=2;
-			}
-			else
-			{
-				Serial_RxPacket[pRxPacket] = RxData;
-				pRxPacket++;
-			}
-		}
-		else if(RxState == 2)  //等待包尾
-		{
-			if(RxData == '\n')  //包尾
-			{
-				RxState  = 0;
-				Serial_RxPacket[pRxPacket] = '\0';  //加入字符串结束字符
-				Serial_RxFlag = 1; //数据包接收标志
-			}
-		}
-		USART_ClearITPendingBit(USART1,USART_IT_RXNE);  //手动对标志位清零
-	}
 }
 
 

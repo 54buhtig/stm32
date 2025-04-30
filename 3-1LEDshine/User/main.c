@@ -15,14 +15,15 @@ int main(void)
 	GPIO_InitTypeDef GPIO_InitStructure;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
 //	GPIO_InitStructure.GPIO_Pin= GPIO_Pin_All;
-	GPIO_InitStructure.GPIO_Pin= GPIO_Pin_0;
+	GPIO_InitStructure.GPIO_Pin= GPIO_Pin_8 | GPIO_Pin_1;
 
 	GPIO_InitStructure.GPIO_Speed= GPIO_Speed_50MHz;
 	
 	GPIO_Init(GPIOA,&GPIO_InitStructure);  //初始化GPIO结构体
 
 	
-	GPIO_SetBits(GPIOA,GPIO_Pin_0);   //低电平导通LED，前提是负极接入AO口
+	GPIO_ResetBits(GPIOA,GPIO_Pin_8);   //低电平导通LED，前提是负极接入AO口
+	GPIO_ResetBits(GPIOA,GPIO_Pin_1);   //低电平导通LED，前提是负极接入AO口
 //	GPIO_ResetBits(GPIOA,GPIO_Pin_0);  //高电平不导通LED，前提是负极接入AO口
 
 	
