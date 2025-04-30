@@ -226,7 +226,7 @@ if(dataPtr != NULL && result != -1)					//如果找到了
 	
 	
 	//自主添加
-	if(strstr((char *)req_payload, "led1"))		//搜索"led1"
+	if(strstr((char *)req_payload, "LED01"))		//搜索"led1"
 	{
 		if(num == 1)								//控制数据如果为1，代表开
 		{
