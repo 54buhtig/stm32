@@ -10,16 +10,16 @@ void AD_Init(void)
 {
 	//第1步：开启RCC时钟，引脚时钟和ADC时钟
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1,ENABLE);  //开启ADC时钟
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);  //开启GPIOA时钟
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);  //开启GPIOB时钟
 	RCC_ADCCLKConfig(RCC_PCLK2_Div6);  //配置ADCCLK,对APB2时钟进行6分频,所以是12MHz
 	
 	
 	//第2步：配置GPIO引脚
 	GPIO_InitTypeDef GPIO_InitStructure;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;  //选择模拟输入模式
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 ;   //引脚A0
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 ;   //引脚B0
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOA,&GPIO_InitStructure);
+	GPIO_Init(GPIOB,&GPIO_InitStructure);
 
 	
 	//第3步：选择规则组的输入通道，填充菜单
