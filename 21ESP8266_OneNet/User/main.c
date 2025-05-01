@@ -64,12 +64,12 @@ int main(void)
 		OLED_ShowNum(2,9,rec_data[1],2);
 		
 		if(++timeCount >= 50)									//发送间隔5s
-				{		
+		{		
 //					data_len=MqttOnenet_Savedata(send_jason,temperature, humidity);
-					OneNet_SendData();									//发送数据
-					timeCount = 0;
-					ESP8266_Clear();
-				}
+			OneNet_SendData();									//发送数据
+			timeCount = 0;
+			ESP8266_Clear();
+		}
 			  dataPtr = ESP8266_GetIPD(0);
 			  if(dataPtr != NULL)
 				OneNet_RevPro(dataPtr);
